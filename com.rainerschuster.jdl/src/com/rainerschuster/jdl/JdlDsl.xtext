@@ -1,0 +1,116 @@
+grammar com.rainerschuster.jdl.JdlDsl with org.eclipse.xtext.common.Terminals
+
+generate jdlDsl "http://www.rainerschuster.com/jdl/JdlDsl"
+
+// TODO See ScopeProvider, JdlDslDiagramConfig
+
+Model:
+	elements+=Element*
+;
+
+Element:
+	Entity
+	| Enumeration
+	| Relationship
+	| Option
+;
+
+Entity:
+	'entity' name=ID ('(' tableName=ID ')')? ('{' (fields+=Field (',' fields+=Field)*)? '}')?
+;
+
+Field:
+	name=ID type=Type validation+=Validation*
+;
+
+Type:
+	value='String'
+	| value='Integer'
+	| value='Long'
+	| value='BigDecimal'
+	| value='Float'
+	| value='Double'
+	| value='Enum'
+	| value='Boolean'
+	| value='LocalDate'
+	| value='ZonedDateTime'
+	| value='Blob'
+	| value='AnyBlob'
+	| value='ImageBlob'
+	| value='Date' // Cassandra
+	| value='UUID' // Cassandra
+	| ref=[Element|ID]
+;
+
+Validation:
+	name='required'
+	| name='minlength' '(' minlength=INT ')'
+	| name='maxlength' '(' maxlength=INT ')'
+	| name='pattern' '(' pattern=STRING ')'
+	| name='min' '(' min=INT ')'
+	| name='max' '(' max=INT ')'
+	| name='minbytes' '(' minbytes=INT ')'
+	| name='maxbytes' '(' maxbytes=INT ')'
+;
+
+enum ReleationshipMultiplicity:
+	OneToMany | ManyToOne | OneToOne | ManyToMany
+;
+
+Relationship:
+	'relationship' multiplicity=ReleationshipMultiplicity '{' from=[Entity|ID] ('{' fromFieldName=ID ('(' fromFieldJoin=[Field|ID] ')')? '}')? 'to' to=[Entity|ID] ('{' toFieldName=ID ('(' toFieldJoin=[Field|ID] ')')? '}')? '}'
+;
+
+Enumeration:
+	'enum' name=ID '{' items+=ID (',' items+=ID)* '}'
+;
+
+Option:
+	option=OptionX (all?=All | entities+=[Entity|ID] (',' entities+=[Entity|ID])*) 'with' optionValue=ID ('except' except+=[Entity|ID] (',' except+=[Entity|ID])*)?
+;
+
+
+//DtoOption:
+//	'dto' selection=OptionEntitySelector 'with' value='mapstruct' except=OptionExcept?
+//;
+//
+//ServiceOption:
+//	'service' selection=OptionEntitySelector 'with' value=('serviceClass'|'serviceImpl') except=OptionExcept?
+//;
+//
+//PaginationOption:
+//	'pagination' selection=OptionEntitySelector 'with' value=('pager'|'pagination'|'infinite-scroll') except=OptionExcept?
+//;
+//
+//SearchEngineOption:
+//	'searchEngine' selection=OptionEntitySelector 'with' value='elasticsearch' except=OptionExcept?
+//;
+//
+//
+//OptionEntitySelector:
+//	all?=All
+//	| entities+=[Entity|ID] (',' entities+=[Entity|ID])*
+//;
+//
+//OptionExcept:
+//	'except' except+=[Entity|ID] (',' except+=[Entity|ID])*
+//;
+
+
+All:
+	'*' | 'all'
+;
+
+OptionX:
+	'dto'
+	| 'paginate'
+	| 'service'
+	| 'skipClient'
+	| 'skipServer'
+	| 'angularSuffix'
+	| 'microservice'
+	| 'search'
+	| ID
+;
+
+terminal ID  		: '^'?('a'..'z'|'A'..'Z'|'_'|'-') ('a'..'z'|'A'..'Z'|'_'|'-'|'0'..'9')*;

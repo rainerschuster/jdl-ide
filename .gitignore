@@ -1,0 +1,13 @@
+bin/
+target/
+generated/
+generated-sources/
+src-gen/
+xtend-gen/
+xsemantics-gen/
+.DS_Store
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
