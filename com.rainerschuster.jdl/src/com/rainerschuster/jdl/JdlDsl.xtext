@@ -2,8 +2,6 @@ grammar com.rainerschuster.jdl.JdlDsl with org.eclipse.xtext.common.Terminals
 
 generate jdlDsl "http://www.rainerschuster.com/jdl/JdlDsl"
 
-// TODO See ScopeProvider, JdlDslDiagramConfig
-
 Model:
 	elements+=Element*
 ;
