@@ -1,0 +1,93 @@
+<idea-plugin version="2">
+	<extensions defaultExtensionNs="org.eclipse.xtext.idea">
+		<package
+			uri="http://www.rainerschuster.com/jdl/JdlDsl"
+			class="com.rainerschuster.jdl.jdlDsl.JdlDslPackage"
+		/>
+		<resourceFactory 
+			type="jdl"
+			class="org.eclipse.xtext.resource.IResourceFactory"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+		/>
+		<resourceServiceProvider
+			uriExtension="jdl"
+			class="org.eclipse.xtext.idea.resource.IResourceIdeaServiceProvider"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+		/>
+
+		<lang.setup
+			language="com.rainerschuster.jdl.JdlDsl"
+			implementationClass="com.rainerschuster.jdl.idea.JdlDslIdeaSetup"
+		/>
+	</extensions>
+
+	<extensions defaultExtensionNs="com.intellij">
+		<psi.treeChangePreprocessor implementation="com.rainerschuster.jdl.idea.lang.psi.JdlDslCodeBlockModificationListener"/>
+
+		<fileTypeFactory implementation="com.rainerschuster.jdl.idea.lang.JdlDslFileTypeFactory"/>
+		<stubElementTypeHolder class="com.rainerschuster.jdl.idea.lang.JdlDslElementTypeProvider"/>
+		<lang.ast.factory 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.lang.BaseXtextASTFactory"
+		/>
+		<lang.parserDefinition 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="com.rainerschuster.jdl.idea.lang.parser.JdlDslParserDefinition"
+		/>
+		<lang.findUsagesProvider 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.findusages.BaseXtextFindUsageProvider"
+		/>
+		<lang.refactoringSupport 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.refactoring.BaseXtextRefactoringSupportProvider"
+		/>
+		<lang.namesValidator 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="com.intellij.lang.refactoring.NamesValidator"
+		/>
+		<lang.syntaxHighlighterFactory key="com.rainerschuster.jdl.JdlDsl" implementationClass="com.rainerschuster.jdl.idea.highlighting.JdlDslSyntaxHighlighterFactory" />
+		<lang.braceMatcher 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="com.intellij.lang.PairedBraceMatcher"
+		/>
+		<annotator 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.annotation.IssueAnnotator"
+		/>
+		<completion.contributor language="com.rainerschuster.jdl.JdlDsl" implementationClass="com.rainerschuster.jdl.idea.completion.JdlDslCompletionContributor"/>
+		<pom.declarationSearcher implementation="com.rainerschuster.jdl.idea.lang.pom.JdlDslPomDeclarationSearcher"/>
+
+		<lang.psiStructureViewFactory 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="com.intellij.lang.PsiStructureViewFactory"
+		/>
+		<facetType implementation="com.rainerschuster.jdl.idea.facet.JdlDslFacetType"/>
+		<lang.documentationProvider 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.documentation.IdeaDocumentationProvider"
+		/>
+		<colorSettingsPage implementation="com.rainerschuster.jdl.idea.highlighting.JdlDslColorSettingsPage"/>
+		<highlightVisitor implementation="com.rainerschuster.jdl.idea.highlighting.JdlDslSemanticHighlightVisitor"/>
+
+		<lang.formatter 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="com.intellij.formatting.FormattingModelBuilder"
+		/>
+		<lang.commenter 
+			language="com.rainerschuster.jdl.JdlDsl"
+			factoryClass="com.rainerschuster.jdl.idea.JdlDslExtensionFactory"
+			implementationClass="com.intellij.lang.CodeDocumentationAwareCommenter"
+		/>
+	</extensions>
+</idea-plugin>

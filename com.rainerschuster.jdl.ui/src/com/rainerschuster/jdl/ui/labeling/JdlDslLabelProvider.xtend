@@ -10,6 +10,7 @@ import com.rainerschuster.jdl.jdlDsl.Option
 import com.rainerschuster.jdl.jdlDsl.Relationship
 import com.rainerschuster.jdl.jdlDsl.Enumeration
 import com.rainerschuster.jdl.jdlDsl.Entity
+import com.rainerschuster.jdl.jdlDsl.RelationshipItem
 
 /**
  * Provides labels for EObjects.
@@ -24,6 +25,10 @@ class JdlDslLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def text(Relationship ele) {
+		ele.multiplicity.literal
+	}
+
+	def text(RelationshipItem ele) {
 		ele.from.name + ' to ' + ele.to.name
 	}
 
@@ -36,6 +41,10 @@ class JdlDslLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def image(Relationship ele) {
+		'relationship.png'
+	}
+
+	def image(RelationshipItem ele) {
 		'relationship.png'
 	}
 

@@ -34,10 +34,10 @@ class JdlDslValidator extends AbstractJdlDslValidator {
 		'dto' -> #['mapstruct'],
 		'paginate' -> #['pager', 'pagination', 'infinite-scroll'],
 		'service' -> #['serviceClass', 'serviceImpl'],
-		'skipClient' -> #[],
-		'skipServer' -> #[],
-		'angularSuffix' -> #[],
-		'microservice' -> #[],
+		'skipClient' -> #[], // empty means no value allowed
+		'skipServer' -> #[], // empty means no value allowed
+		'angularSuffix' -> null, // null means anything allowed
+		'microservice' -> null, // null means anything allowed
 		'search' -> #['elasticsearch']
 	};
 
@@ -59,26 +59,26 @@ class JdlDslValidator extends AbstractJdlDslValidator {
 		'UUID' -> #['required']		
 	};
 
-	@Check
-	def checkOptionValues(Option option) {
-		if (OPTIONS.containsKey(option.option)) {
-			val supportedOptionValues = OPTIONS.get(option.option);
-			if (!supportedOptionValues.contains(option.optionValue)) {
-				val message = if (supportedOptionValues.isEmpty) {
-					"Unsupported option value! '" + option.option + "' does not support values!"
-				} else {
-					"Unsupported option value! Supported values for '" + option.option + "' are '" + supportedOptionValues.join(', ') + "'."
-				}
-				warning(message, 
-						JdlDslPackage.Literals.OPTION__OPTION_VALUE,
-						INVALID_OPTION_VALUE)
-			}
-		} else {
-			warning("Unknown option! Known options are '" + OPTIONS.keySet.join(', ') + "'.", 
-					JdlDslPackage.Literals.OPTION__OPTION,
-					INVALID_OPTION)
-		}
-	}
+//	@Check
+//	def checkOptionValues(Option option) {
+//		if (OPTIONS.containsKey(option.option)) {
+//			val supportedOptionValues = OPTIONS.get(option.option);
+//			if (supportedOptionValues != null && !supportedOptionValues.contains(option.optionValue)) {
+//				val message = if (supportedOptionValues.isEmpty) {
+//					"Unsupported option value! '" + option.option + "' does not support values!"
+//				} else {
+//					"Unsupported option value! Supported values for '" + option.option + "' are '" + supportedOptionValues.join(', ') + "'."
+//				}
+//				warning(message, 
+//						JdlDslPackage.Literals.OPTION__OPTION_VALUE,
+//						INVALID_OPTION_VALUE)
+//			}
+//		} else {
+//			warning("Unknown option! Known options are '" + OPTIONS.keySet.join(', ') + "'.", 
+//					JdlDslPackage.Literals.OPTION__OPTION,
+//					INVALID_OPTION)
+//		}
+//	}
 
 	@Check
 	def checkValidations(Field field) {

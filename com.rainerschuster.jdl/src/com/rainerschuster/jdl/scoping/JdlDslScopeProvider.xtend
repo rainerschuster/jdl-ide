@@ -10,6 +10,7 @@ import com.rainerschuster.jdl.jdlDsl.JdlDslPackage
 import org.eclipse.xtext.EcoreUtil2
 import com.rainerschuster.jdl.jdlDsl.Field
 import org.eclipse.xtext.scoping.Scopes
+import com.rainerschuster.jdl.jdlDsl.RelationshipItem
 
 /**
  * This class contains custom scoping description.
@@ -20,20 +21,20 @@ import org.eclipse.xtext.scoping.Scopes
 class JdlDslScopeProvider extends AbstractJdlDslScopeProvider {
 	override getScope(EObject context, EReference reference) {
 		// We want to define the Scope for the Element's superElement cross-reference
-		if (context instanceof Relationship && reference == JdlDslPackage.Literals.RELATIONSHIP__FROM_FIELD_JOIN) {
+		if (context instanceof RelationshipItem && reference == JdlDslPackage.Literals.RELATIONSHIP_ITEM__FROM_FIELD_JOIN) {
 			// Collect a list of candidates by going through the model
 			// EcoreUtil2 provides useful functionality to do that
 			// For example searching for all elements within the root Object's tree
 //			val rootElement = EcoreUtil2.getRootContainer((context as Relationship).from)
-			val candidates = EcoreUtil2.getAllContentsOfType((context as Relationship).to, Field)
+			val candidates = EcoreUtil2.getAllContentsOfType((context as RelationshipItem).to, Field)
 			// Create IEObjectDescriptions and puts them into an IScope instance
 			return Scopes.scopeFor(candidates)
-		} else if (context instanceof Relationship && reference == JdlDslPackage.Literals.RELATIONSHIP__TO_FIELD_JOIN) {
+		} else if (context instanceof RelationshipItem && reference == JdlDslPackage.Literals.RELATIONSHIP_ITEM__TO_FIELD_JOIN) {
 			// Collect a list of candidates by going through the model
 			// EcoreUtil2 provides useful functionality to do that
 			// For example searching for all elements within the root Object's tree
 //			val rootElement = EcoreUtil2.getRootContainer((context as Relationship).to)
-			val candidates = EcoreUtil2.getAllContentsOfType((context as Relationship).from, Field)
+			val candidates = EcoreUtil2.getAllContentsOfType((context as RelationshipItem).from, Field)
 			// Create IEObjectDescriptions and puts them into an IScope instance
 			return Scopes.scopeFor(candidates/*, super.getScope(context, reference)*/)
 		}

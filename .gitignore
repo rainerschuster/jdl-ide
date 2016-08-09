@@ -1,5 +1,6 @@
 bin/
 target/
+build/
 generated/
 generated-sources/
 src-gen/
@@ -11,3 +12,5 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
+/.gradle
+/com.rainerschuster.jdl.ui/icons/Thumbs.db

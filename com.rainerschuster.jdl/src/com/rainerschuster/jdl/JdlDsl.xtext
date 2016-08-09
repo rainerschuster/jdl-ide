@@ -56,7 +56,11 @@ enum ReleationshipMultiplicity:
 ;
 
 Relationship:
-	'relationship' multiplicity=ReleationshipMultiplicity '{' from=[Entity|ID] ('{' fromFieldName=ID ('(' fromFieldJoin=[Field|ID] ')')? '}')? 'to' to=[Entity|ID] ('{' toFieldName=ID ('(' toFieldJoin=[Field|ID] ')')? '}')? '}'
+	'relationship' multiplicity=ReleationshipMultiplicity '{' items+=RelationshipItem (',' items+=RelationshipItem)* '}'
+;
+
+RelationshipItem:
+	from=[Entity|ID] ('{' fromFieldName=ID ('(' fromFieldJoin=[Field|ID] ')')? '}')? 'to' to=[Entity|ID] ('{' toFieldName=ID ('(' toFieldJoin=[Field|ID] ')')? '}')?
 ;
 
 Enumeration:
@@ -64,51 +68,60 @@ Enumeration:
 ;
 
 Option:
-	option=OptionX (all?=All | entities+=[Entity|ID] (',' entities+=[Entity|ID])*) 'with' optionValue=ID ('except' except+=[Entity|ID] (',' except+=[Entity|ID])*)?
+	DtoOption
+	| PaginationOption
+	| ServiceOption
+	| SkipClientOption
+	| SkipServerOption
+	| AngularSuffixOption
+	| MicroserviceOption
+	| SearchOption
 ;
 
+DtoOption:
+	'dto' OptionEntitySelector 'with' value='mapstruct' OptionExcept?
+;
 
-//DtoOption:
-//	'dto' selection=OptionEntitySelector 'with' value='mapstruct' except=OptionExcept?
-//;
-//
-//ServiceOption:
-//	'service' selection=OptionEntitySelector 'with' value=('serviceClass'|'serviceImpl') except=OptionExcept?
-//;
-//
-//PaginationOption:
-//	'pagination' selection=OptionEntitySelector 'with' value=('pager'|'pagination'|'infinite-scroll') except=OptionExcept?
-//;
-//
-//SearchEngineOption:
-//	'searchEngine' selection=OptionEntitySelector 'with' value='elasticsearch' except=OptionExcept?
-//;
-//
-//
-//OptionEntitySelector:
-//	all?=All
-//	| entities+=[Entity|ID] (',' entities+=[Entity|ID])*
-//;
-//
-//OptionExcept:
-//	'except' except+=[Entity|ID] (',' except+=[Entity|ID])*
-//;
+ServiceOption:
+	'service' OptionEntitySelector 'with' value=('serviceClass'|'serviceImpl') OptionExcept?
+;
 
+PaginationOption:
+	'paginate' OptionEntitySelector 'with' value=('pager'|'pagination'|'infinite-scroll') OptionExcept?
+;
+
+// TODO search or searchEngine?
+SearchOption:
+	'search' OptionEntitySelector 'with' value='elasticsearch' OptionExcept?
+;
+
+SkipClientOption:
+	'skipClient' 'for' OptionEntitySelector OptionExcept?
+;
+
+SkipServerOption:
+	'skipServer' 'for' OptionEntitySelector OptionExcept?
+;
+
+AngularSuffixOption:
+	'angularSuffix' OptionEntitySelector 'with' value=ID OptionExcept?
+;
+
+MicroserviceOption:
+	'microservice' OptionEntitySelector 'with' value=ID OptionExcept?
+;
+
+fragment OptionEntitySelector*:
+	all?=All
+	| entities+=[Entity|ID] (',' entities+=[Entity|ID])*
+;
+
+fragment OptionExcept*:
+	'except' except+=[Entity|ID] (',' except+=[Entity|ID])*
+;
 
 All:
 	'*' | 'all'
-;
-
-OptionX:
-	'dto'
-	| 'paginate'
-	| 'service'
-	| 'skipClient'
-	| 'skipServer'
-	| 'angularSuffix'
-	| 'microservice'
-	| 'search'
-	| ID
 ;
 
 terminal ID  		: '^'?('a'..'z'|'A'..'Z'|'_'|'-') ('a'..'z'|'A'..'Z'|'_'|'-'|'0'..'9')*;

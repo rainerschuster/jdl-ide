@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?>
-<target name="com.rainerschuster.jdl.target" sequenceNumber="1">
+<?pde version="3.8"?><target name="com.rainerschuster.jdl.target" sequenceNumber="2">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
@@ -22,7 +21,14 @@
 <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="de.fxdiagram.eclipse.xtext" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.kiml.formats" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.core.kgraph" version="0.0.0"/>
+<unit id="de.fxdiagram.sdk.feature.feature.group" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.core" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.kiml.service" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.kiml.graphviz.layouter" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.kiml.graphviz.dot" version="0.7.1.201506231527"/>
+<unit id="de.cau.cs.kieler.kiml" version="0.0.0"/>
 <repository location="http://dl.bintray.com/jankoehnlein/FXDiagram"/>
 </location>
 </locations>

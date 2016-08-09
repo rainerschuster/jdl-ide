@@ -1,0 +1,3 @@
+include 'com.rainerschuster.jdl'
+include 'com.rainerschuster.jdl.ide'
+include 'com.rainerschuster.jdl.idea'

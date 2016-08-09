@@ -25,6 +25,7 @@ import de.fxdiagram.mapping.shapes.BaseClassNode
 import static de.fxdiagram.mapping.shapes.BaseClassNode.*
 import de.fxdiagram.core.XConnectionLabel
 import com.rainerschuster.jdl.jdlDsl.Enumeration
+import com.rainerschuster.jdl.jdlDsl.RelationshipItem
 
 // TODO de.fxdiagram.xtext.xbase.JvmClassDiagramConfig
 class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
@@ -35,7 +36,7 @@ class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
 			// and a connection for each relationship
 			entityNode.nodeForEach[elements.filter(Entity)]
 			enumerationNode.nodeForEach[elements.filter(Enumeration)]
-			relationshipConnection.connectionForEach[elements.filter(Relationship)]
+			relationshipItemConnection.connectionForEach[elements.filter(Relationship).map[items].flatten]
 			eagerly(propertyConnection, propertyEnumerationConnection)
 		}
 
@@ -142,7 +143,13 @@ class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
 		}
 	}
 
-	val relationshipConnection = new ConnectionMapping<Relationship>(this, 'relationshipConnection', 'Relationship') {
+//	val relationshipConnection = new ConnectionMapping<Relationship>(this, 'relationshipConnection', 'Relationship') {
+//		override protected calls() {
+//			relationshipItemConnection.connectionForEach[items]
+//		}
+//	}
+
+	val relationshipItemConnection = new ConnectionMapping<RelationshipItem>(this, 'relationshipItemConnection', 'Relationship') {
 		override protected calls() {
 //			multiplicityLabel.labelFor[it]
 			fromLabel.labelFor[it]
@@ -159,8 +166,8 @@ class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
 //		}
 //	}
 
-	val fromLabel = new ConnectionLabelMapping<Relationship>(this, 'fromLabel') {
-		override getText(Relationship it) {
+	val fromLabel = new ConnectionLabelMapping<RelationshipItem>(this, 'fromLabel') {
+		override getText(RelationshipItem it) {
 			var text = fromFieldName;
 			if (text == null) {
 				text = from?.name
@@ -170,24 +177,24 @@ class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
 			}
 			text += " ";
 			text += " [";
-			text += switch(multiplicity) {
-				case ONE_TO_MANY: '1'
-				case MANY_TO_ONE: '*'
-				case ONE_TO_ONE: '1'
-				case MANY_TO_MANY: '*'
-			}
+//			text += switch(multiplicity) {
+//				case ONE_TO_MANY: '1'
+//				case MANY_TO_ONE: '*'
+//				case ONE_TO_ONE: '1'
+//				case MANY_TO_MANY: '*'
+//			}
 			text += "]";
 			text
 		}
-		override XConnectionLabel createLabel(IMappedElementDescriptor<Relationship> descriptor, Relationship labelElement) {
+		override XConnectionLabel createLabel(IMappedElementDescriptor<RelationshipItem> descriptor, RelationshipItem labelElement) {
 			val label = super.createLabel(descriptor, labelElement);
 			label.position = 0.2;
 			label
 		}
 	}
 
-	val toLabel = new ConnectionLabelMapping<Relationship>(this, 'toLabel') {
-		override getText(Relationship it) {
+	val toLabel = new ConnectionLabelMapping<RelationshipItem>(this, 'toLabel') {
+		override getText(RelationshipItem it) {
 			var text = toFieldName;
 			if (text == null) {
 				text = to?.name
@@ -197,16 +204,16 @@ class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
 			}
 			text += " ";
 			text += " [";
-			text += switch(multiplicity) {
-				case ONE_TO_MANY: '*'
-				case MANY_TO_ONE: '1'
-				case ONE_TO_ONE: '1'
-				case MANY_TO_MANY: '*'
-			}
+//			text += switch(multiplicity) {
+//				case ONE_TO_MANY: '*'
+//				case MANY_TO_ONE: '1'
+//				case ONE_TO_ONE: '1'
+//				case MANY_TO_MANY: '*'
+//			}
 			text += "]";
 			text
 		}
-		override XConnectionLabel createLabel(IMappedElementDescriptor<Relationship> descriptor, Relationship labelElement) {
+		override XConnectionLabel createLabel(IMappedElementDescriptor<RelationshipItem> descriptor, RelationshipItem labelElement) {
 			val label = super.createLabel(descriptor, labelElement);
 			label.position = 0.8;
 			label
@@ -225,10 +232,14 @@ class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
 				add(jdlDiagram, [domainArgument.getContainerOfType(Model)])
 				add(enumerationNode, [domainArgument])
 			}
-			Relationship: {
+			RelationshipItem: {
 				add(jdlDiagram, [domainArgument.getContainerOfType(Model)])	
-				add(relationshipConnection, [domainArgument])
+				add(relationshipItemConnection, [domainArgument])
 			}
+//			Relationship: {
+//				add(jdlDiagram, [domainArgument.getContainerOfType(Model)])	
+//				add(relationshipConnection, [domainArgument])
+//			}
 			Field: {
 				add(propertyConnection)
 				add(propertyEnumerationConnection)
