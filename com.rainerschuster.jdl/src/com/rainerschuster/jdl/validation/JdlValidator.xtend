@@ -3,6 +3,10 @@
  */
 package com.rainerschuster.jdl.validation
 
+import org.eclipse.xtext.validation.Check
+import com.rainerschuster.jdl.jdl.Option
+import com.rainerschuster.jdl.jdl.JdlPackage
+import com.rainerschuster.jdl.jdl.Field
 
 /**
  * This class contains custom validation rules. 
@@ -22,4 +26,74 @@ class JdlValidator extends AbstractJdlValidator {
 //		}
 //	}
 	
+	public static val INVALID_OPTION = 'invalidOption'
+	public static val INVALID_OPTION_VALUE = 'invalidOptionValue'
+	public static val INVALID_VALIDATION = 'invalidValidation'
+
+	public static val OPTIONS = #{
+		'dto' -> #['mapstruct'],
+		'paginate' -> #['pager', 'pagination', 'infinite-scroll'],
+		'service' -> #['serviceClass', 'serviceImpl'],
+		'skipClient' -> #[], // empty means no value allowed
+		'skipServer' -> #[], // empty means no value allowed
+		'angularSuffix' -> null, // null means anything allowed
+		'microservice' -> null, // null means anything allowed
+		'search' -> #['elasticsearch']
+	};
+
+	public static val VALIDATIONS = #{
+		'String' -> #['required', 'minlength', 'maxlength', 'pattern'],
+		'Integer' -> #['required', 'min', 'max'],
+		'Long' -> #['required', 'min', 'max'],
+		'BigDecimal' -> #['required', 'min', 'max'],
+		'Float' -> #['required', 'min', 'max'],
+		'Double' -> #['required', 'min', 'max'],
+		'Enum' -> #['required'],
+		'Boolean' -> #['required'],
+		'LocalDate' -> #['required'],
+		'ZonedDateTime' -> #['required'],
+		'Blob' -> #['required', 'minbytes', 'maxbytes'],
+		'AnyBlob' -> #['required', 'minbytes', 'maxbytes'],
+		'ImageBlob' -> #['required', 'minbytes', 'maxbytes'],
+		'Date' -> #['required'],
+		'UUID' -> #['required']		
+	};
+
+//	@Check
+//	def checkOptionValues(Option option) {
+//		if (OPTIONS.containsKey(option.option)) {
+//			val supportedOptionValues = OPTIONS.get(option.option);
+//			if (supportedOptionValues != null && !supportedOptionValues.contains(option.optionValue)) {
+//				val message = if (supportedOptionValues.isEmpty) {
+//					"Unsupported option value! '" + option.option + "' does not support values!"
+//				} else {
+//					"Unsupported option value! Supported values for '" + option.option + "' are '" + supportedOptionValues.join(', ') + "'."
+//				}
+//				warning(message, 
+//						JdlPackage.Literals.OPTION__OPTION_VALUE,
+//						INVALID_OPTION_VALUE)
+//			}
+//		} else {
+//			warning("Unknown option! Known options are '" + OPTIONS.keySet.join(', ') + "'.", 
+//					JdlPackage.Literals.OPTION__OPTION,
+//					INVALID_OPTION)
+//		}
+//	}
+
+	@Check
+	def checkValidations(Field field) {
+		if (VALIDATIONS.containsKey(field.type.value)) {
+			val supportedValidations = VALIDATIONS.get(field.type.value);
+			field.validation
+				.filter[!supportedValidations.contains(it.name)]
+				.forEach[
+					warning("Unsupported validation! Supported validations for '" + field.type.value + "' are '" + supportedValidations.join(', ') + "'.", 
+							JdlPackage.Literals.FIELD__VALIDATION,
+							INVALID_VALIDATION)
+				]
+		} else {
+			// TODO check reference validations
+		}
+	}
+
 }
