@@ -11,10 +11,10 @@ import com.intellij.openapi.components.StorageScheme
 import org.eclipse.xtext.idea.facet.AbstractFacetConfiguration
 import org.eclipse.xtext.idea.facet.GeneratorConfigurationState
 
-@State(name = "com.rainerschuster.jdl.JdlDslGenerator", storages = #[
+@State(name = "com.rainerschuster.jdl.JdlGenerator", storages = #[
 		@Storage(id = "default", file = StoragePathMacros.PROJECT_FILE),
 		@Storage(id = "dir", file = StoragePathMacros.PROJECT_CONFIG_DIR
-				+ "/JdlDslGeneratorConfig.xml", scheme = StorageScheme.DIRECTORY_BASED)])
- class JdlDslFacetConfiguration extends AbstractFacetConfiguration implements PersistentStateComponent<GeneratorConfigurationState>{
+				+ "/JdlGeneratorConfig.xml", scheme = StorageScheme.DIRECTORY_BASED)])
+ class JdlFacetConfiguration extends AbstractFacetConfiguration implements PersistentStateComponent<GeneratorConfigurationState>{
 
 }

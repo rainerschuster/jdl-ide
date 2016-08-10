@@ -1,6 +1,6 @@
-grammar com.rainerschuster.jdl.JdlDsl with org.eclipse.xtext.common.Terminals
+grammar com.rainerschuster.jdl.Jdl with org.eclipse.xtext.common.Terminals
 
-generate jdlDsl "http://www.rainerschuster.com/jdl/JdlDsl"
+generate jdl "http://www.rainerschuster.com/jdl/Jdl"
 
 Model:
 	elements+=Element*

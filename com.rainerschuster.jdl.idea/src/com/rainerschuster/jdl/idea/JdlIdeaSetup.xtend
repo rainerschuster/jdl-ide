@@ -6,11 +6,11 @@ package com.rainerschuster.jdl.idea
 import org.eclipse.xtext.ISetup
 import org.eclipse.xtext.idea.extensions.EcoreGlobalRegistries
 
-class JdlDslIdeaSetup implements ISetup {
+class JdlIdeaSetup implements ISetup {
 
 	override createInjectorAndDoEMFRegistration() {
 		EcoreGlobalRegistries.ensureInitialized
-		new JdlDslStandaloneSetupIdea().createInjector
+		new JdlStandaloneSetupIdea().createInjector
 	}
 
 }

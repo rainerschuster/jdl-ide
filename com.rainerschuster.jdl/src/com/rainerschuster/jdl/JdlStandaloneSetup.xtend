@@ -7,9 +7,9 @@ package com.rainerschuster.jdl
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
  */
-class JdlDslStandaloneSetup extends JdlDslStandaloneSetupGenerated {
+class JdlStandaloneSetup extends JdlStandaloneSetupGenerated {
 
 	def static void doSetup() {
-		new JdlDslStandaloneSetup().createInjectorAndDoEMFRegistration()
+		new JdlStandaloneSetup().createInjectorAndDoEMFRegistration()
 	}
 }

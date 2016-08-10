@@ -14,14 +14,14 @@ import org.eclipse.xtext.web.servlet.XtextServlet
  * Deploy this class into a servlet container to enable DSL-specific services.
  */
 @WebServlet(name = 'XtextServices', urlPatterns = '/xtext-service/*')
-class JdlDslServlet extends XtextServlet {
+class JdlServlet extends XtextServlet {
 	
 	val List<ExecutorService> executorServices = newArrayList
 	
 	override init() {
 		super.init()
 		val Provider<ExecutorService> executorServiceProvider = [Executors.newCachedThreadPool => [executorServices += it]]
-		new JdlDslWebSetup(executorServiceProvider).createInjectorAndDoEMFRegistration()
+		new JdlWebSetup(executorServiceProvider).createInjectorAndDoEMFRegistration()
 	}
 	
 	override destroy() {

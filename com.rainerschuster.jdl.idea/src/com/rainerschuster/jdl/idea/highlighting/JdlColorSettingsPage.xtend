@@ -4,5 +4,5 @@
 package com.rainerschuster.jdl.idea.highlighting
 
 
-class JdlDslColorSettingsPage extends JdlDslBaseColorSettingsPage {
+class JdlColorSettingsPage extends JdlBaseColorSettingsPage {
 }

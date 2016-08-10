@@ -6,18 +6,18 @@ package com.rainerschuster.jdl.ui.labeling
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import com.rainerschuster.jdl.jdlDsl.Option
-import com.rainerschuster.jdl.jdlDsl.Relationship
-import com.rainerschuster.jdl.jdlDsl.Enumeration
-import com.rainerschuster.jdl.jdlDsl.Entity
-import com.rainerschuster.jdl.jdlDsl.RelationshipItem
+import com.rainerschuster.jdl.jdl.Option
+import com.rainerschuster.jdl.jdl.Relationship
+import com.rainerschuster.jdl.jdl.Enumeration
+import com.rainerschuster.jdl.jdl.Entity
+import com.rainerschuster.jdl.jdl.RelationshipItem
 
 /**
  * Provides labels for EObjects.
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-class JdlDslLabelProvider extends DefaultEObjectLabelProvider {
+class JdlLabelProvider extends DefaultEObjectLabelProvider {
 
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {

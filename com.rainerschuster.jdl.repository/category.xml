@@ -6,6 +6,6 @@
 	<feature id="com.rainerschuster.jdl.feature.source" version="0.0.0">
 		<category name="main.source"/>
 	</feature>
-	<category-def name="main" label="JdlDsl"/>
-	<category-def name="main.source" label="JdlDsl (Sources)"/>
+	<category-def name="main" label="Jdl"/>
+	<category-def name="main.source" label="Jdl (Sources)"/>
 </site>

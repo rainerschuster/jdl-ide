@@ -12,23 +12,23 @@ import static de.fxdiagram.mapping.shapes.BaseNode.*
 
 import static extension de.fxdiagram.core.extensions.ButtonExtensions.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import com.rainerschuster.jdl.jdlDsl.Model
-import com.rainerschuster.jdl.jdlDsl.Entity
-import com.rainerschuster.jdl.jdlDsl.Relationship
+import com.rainerschuster.jdl.jdl.Model
+import com.rainerschuster.jdl.jdl.Entity
+import com.rainerschuster.jdl.jdl.Relationship
 import de.fxdiagram.mapping.IMappedElementDescriptor
 import de.fxdiagram.mapping.NodeLabelMapping
-import com.rainerschuster.jdl.jdlDsl.Field
+import com.rainerschuster.jdl.jdl.Field
 import de.fxdiagram.mapping.shapes.BaseConnection
 import de.fxdiagram.core.anchors.LineArrowHead
 import de.fxdiagram.mapping.shapes.BaseClassNode
 
 import static de.fxdiagram.mapping.shapes.BaseClassNode.*
 import de.fxdiagram.core.XConnectionLabel
-import com.rainerschuster.jdl.jdlDsl.Enumeration
-import com.rainerschuster.jdl.jdlDsl.RelationshipItem
+import com.rainerschuster.jdl.jdl.Enumeration
+import com.rainerschuster.jdl.jdl.RelationshipItem
 
 // TODO de.fxdiagram.xtext.xbase.JvmClassDiagramConfig
-class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
+class JdlDiagramConfig extends AbstractXtextDiagramConfig {
 
 	val jdlDiagram = new DiagramMapping<Model>(this, 'jdlDiagram', 'JDL') {
 		override calls() {

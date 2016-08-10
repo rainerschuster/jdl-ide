@@ -3,14 +3,13 @@
  */
 package com.rainerschuster.jdl.scoping
 
+import com.rainerschuster.jdl.jdl.Field
+import com.rainerschuster.jdl.jdl.RelationshipItem
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import com.rainerschuster.jdl.jdlDsl.Relationship
-import com.rainerschuster.jdl.jdlDsl.JdlDslPackage
 import org.eclipse.xtext.EcoreUtil2
-import com.rainerschuster.jdl.jdlDsl.Field
 import org.eclipse.xtext.scoping.Scopes
-import com.rainerschuster.jdl.jdlDsl.RelationshipItem
+import com.rainerschuster.jdl.jdl.JdlPackage
 
 /**
  * This class contains custom scoping description.
@@ -18,10 +17,10 @@ import com.rainerschuster.jdl.jdlDsl.RelationshipItem
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
  * on how and when to use it.
  */
-class JdlDslScopeProvider extends AbstractJdlDslScopeProvider {
+class JdlScopeProvider extends AbstractJdlScopeProvider {
 	override getScope(EObject context, EReference reference) {
 		// We want to define the Scope for the Element's superElement cross-reference
-		if (context instanceof RelationshipItem && reference == JdlDslPackage.Literals.RELATIONSHIP_ITEM__FROM_FIELD_JOIN) {
+		if (context instanceof RelationshipItem && reference == JdlPackage.Literals.RELATIONSHIP_ITEM__FROM_FIELD_JOIN) {
 			// Collect a list of candidates by going through the model
 			// EcoreUtil2 provides useful functionality to do that
 			// For example searching for all elements within the root Object's tree
@@ -29,7 +28,7 @@ class JdlDslScopeProvider extends AbstractJdlDslScopeProvider {
 			val candidates = EcoreUtil2.getAllContentsOfType((context as RelationshipItem).to, Field)
 			// Create IEObjectDescriptions and puts them into an IScope instance
 			return Scopes.scopeFor(candidates)
-		} else if (context instanceof RelationshipItem && reference == JdlDslPackage.Literals.RELATIONSHIP_ITEM__TO_FIELD_JOIN) {
+		} else if (context instanceof RelationshipItem && reference == JdlPackage.Literals.RELATIONSHIP_ITEM__TO_FIELD_JOIN) {
 			// Collect a list of candidates by going through the model
 			// EcoreUtil2 provides useful functionality to do that
 			// For example searching for all elements within the root Object's tree

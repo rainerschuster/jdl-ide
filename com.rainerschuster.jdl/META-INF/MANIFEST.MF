@@ -15,15 +15,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtend.lib,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: com.rainerschuster.jdl.services,
- com.rainerschuster.jdl.jdlDsl.util,
+Export-Package: com.rainerschuster.jdl.jdl,
+ com.rainerschuster.jdl.jdl.util,
+ com.rainerschuster.jdl.services,
  com.rainerschuster.jdl.serializer,
+ com.rainerschuster.jdl.jdl.impl,
  com.rainerschuster.jdl.validation,
- com.rainerschuster.jdl.jdlDsl,
  com.rainerschuster.jdl.scoping,
  com.rainerschuster.jdl.generator,
  com.rainerschuster.jdl,
- com.rainerschuster.jdl.jdlDsl.impl,
  com.rainerschuster.jdl.parser.antlr.internal,
  com.rainerschuster.jdl.parser.antlr
 Import-Package: org.apache.log4j

@@ -3,8 +3,8 @@
 <plugin>
 	<extension point="org.eclipse.emf.ecore.generated_package">
 		<package 
-			uri = "http://www.rainerschuster.com/jdl/JdlDsl"
-			class = "com.rainerschuster.jdl.jdlDsl.JdlDslPackage"
-			genModel = "model/generated/JdlDsl.genmodel" />
+			uri = "http://www.rainerschuster.com/jdl/Jdl"
+			class = "com.rainerschuster.jdl.jdl.JdlPackage"
+			genModel = "model/generated/Jdl.genmodel" />
 	</extension>
 </plugin>

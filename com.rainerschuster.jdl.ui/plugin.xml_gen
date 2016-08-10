@@ -4,48 +4,48 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="jdl,jh"
-			id="com.rainerschuster.jdl.JdlDsl"
-			name="JdlDsl Editor">
+			id="com.rainerschuster.jdl.Jdl"
+			name="Jdl Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+					definitionId="com.rainerschuster.jdl.Jdl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="com.rainerschuster.jdl.JdlDsl.validate">
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="com.rainerschuster.jdl.Jdl.validate">
 		<activeWhen>
 			<reference
-					definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+					definitionId="com.rainerschuster.jdl.Jdl.Editor.opened">
 			</reference>
 		</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened" />
+				<reference definitionId="com.rainerschuster.jdl.Jdl.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="com.rainerschuster.jdl.JdlDsl.XtextEditor.opened" />
+					<reference definitionId="com.rainerschuster.jdl.Jdl.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -54,22 +54,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+		<definition id="com.rainerschuster.jdl.Jdl.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="com.rainerschuster.jdl.JdlDsl" 
+						value="com.rainerschuster.jdl.Jdl" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
 		</definition>
-		<definition id="com.rainerschuster.jdl.JdlDsl.XtextEditor.opened">
+		<definition id="com.rainerschuster.jdl.Jdl.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="com.rainerschuster.jdl.JdlDsl" 
+						value="com.rainerschuster.jdl.Jdl" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
@@ -78,33 +78,33 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="com.rainerschuster.jdl.JdlDsl"
-			name="JdlDsl">
-			<keywordReference id="com.rainerschuster.jdl.ui.keyword_JdlDsl"/>
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="com.rainerschuster.jdl.Jdl"
+			name="Jdl">
+			<keywordReference id="com.rainerschuster.jdl.ui.keyword_Jdl"/>
 		</page>
 		<page
-			category="com.rainerschuster.jdl.JdlDsl"
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="com.rainerschuster.jdl.JdlDsl.coloring"
+			category="com.rainerschuster.jdl.Jdl"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="com.rainerschuster.jdl.Jdl.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="com.rainerschuster.jdl.ui.keyword_JdlDsl"/>
+			<keywordReference id="com.rainerschuster.jdl.ui.keyword_Jdl"/>
 		</page>
 		<page
-			category="com.rainerschuster.jdl.JdlDsl"
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="com.rainerschuster.jdl.JdlDsl.templates"
+			category="com.rainerschuster.jdl.Jdl"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="com.rainerschuster.jdl.Jdl.templates"
 			name="Templates">
-			<keywordReference id="com.rainerschuster.jdl.ui.keyword_JdlDsl"/>
+			<keywordReference id="com.rainerschuster.jdl.ui.keyword_Jdl"/>
 		</page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="com.rainerschuster.jdl.JdlDsl"
-			name="JdlDsl">
-			<keywordReference id="com.rainerschuster.jdl.ui.keyword_JdlDsl"/>
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="com.rainerschuster.jdl.Jdl"
+			name="Jdl">
+			<keywordReference id="com.rainerschuster.jdl.ui.keyword_Jdl"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -114,14 +114,14 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="com.rainerschuster.jdl.ui.keyword_JdlDsl"
-			label="JdlDsl"/>
+			id="com.rainerschuster.jdl.ui.keyword_Jdl"
+			label="Jdl"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
 	<command
 			description="Trigger expensive validation"
-			id="com.rainerschuster.jdl.JdlDsl.validate"
+			id="com.rainerschuster.jdl.Jdl.validate"
 			name="Validate">
 	</command>
 	<!-- copy qualified name -->
@@ -142,12 +142,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			 <command
-				 commandId="com.rainerschuster.jdl.JdlDsl.validate"
+				 commandId="com.rainerschuster.jdl.Jdl.validate"
 				 style="push"
 				 tooltip="Trigger expensive validation">
 			<visibleWhen checkEnabled="false">
 				<reference
-					definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+					definitionId="com.rainerschuster.jdl.Jdl.Editor.opened">
 				</reference>
 			</visibleWhen>
 		</command>
@@ -157,7 +157,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened" />
+					<reference definitionId="com.rainerschuster.jdl.Jdl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -165,7 +165,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened" />
+					<reference definitionId="com.rainerschuster.jdl.Jdl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -174,7 +174,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="com.rainerschuster.jdl.JdlDsl.XtextEditor.opened" />
+						<reference definitionId="com.rainerschuster.jdl.Jdl.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -187,7 +187,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+					<reference definitionId="com.rainerschuster.jdl.Jdl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -195,11 +195,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+					definitionId="com.rainerschuster.jdl.Jdl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -208,72 +208,72 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="jdl">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
 			uriExtension="jdl">
 		</resourceServiceProvider>
 	</extension>
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="jh">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
 			uriExtension="jh">
 		</resourceServiceProvider>
 	</extension>
-	<!-- marker definitions for com.rainerschuster.jdl.JdlDsl -->
+	<!-- marker definitions for com.rainerschuster.jdl.Jdl -->
 	<extension
-			id="jdldsl.check.fast"
-			name="JdlDsl Problem"
+			id="jdl.check.fast"
+			name="Jdl Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.fast"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="jdldsl.check.normal"
-			name="JdlDsl Problem"
+			id="jdl.check.normal"
+			name="Jdl Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.normal"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="jdldsl.check.expensive"
-			name="JdlDsl Problem"
+			id="jdl.check.expensive"
+			name="Jdl Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
 		<persistent value="true"/>
 	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
 			fileExtensions="jdl,jh"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="com.rainerschuster.jdl.JdlDsl"
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="com.rainerschuster.jdl.JdlDsl.compiler.preferencePage"
+			category="com.rainerschuster.jdl.Jdl"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="com.rainerschuster.jdl.Jdl.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="com.rainerschuster.jdl.ui.keyword_JdlDsl"/>
+			<keywordReference id="com.rainerschuster.jdl.ui.keyword_Jdl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="com.rainerschuster.jdl.JdlDsl"
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="com.rainerschuster.jdl.JdlDsl.compiler.propertyPage"
+			category="com.rainerschuster.jdl.Jdl"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="com.rainerschuster.jdl.Jdl.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="com.rainerschuster.jdl.ui.keyword_JdlDsl"/>
+			<keywordReference id="com.rainerschuster.jdl.ui.keyword_Jdl"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -284,20 +284,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="com.rainerschuster.jdl.JdlDsl.OpenGeneratedCode"
+				id="com.rainerschuster.jdl.Jdl.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened" />
+					<reference definitionId="com.rainerschuster.jdl.Jdl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened" />
+				<reference definitionId="com.rainerschuster.jdl.Jdl.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -305,11 +305,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+					definitionId="com.rainerschuster.jdl.Jdl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -329,33 +329,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened"/>
+					<reference definitionId="com.rainerschuster.jdl.Jdl.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for com.rainerschuster.jdl.JdlDsl -->
+	<!-- quickfix marker resolution generator for com.rainerschuster.jdl.Jdl -->
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="com.rainerschuster.jdl.ui.jdldsl.check.fast">
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="com.rainerschuster.jdl.ui.jdl.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="com.rainerschuster.jdl.ui.jdldsl.check.normal">
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="com.rainerschuster.jdl.ui.jdl.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="com.rainerschuster.jdl.ui.jdldsl.check.expensive">
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="com.rainerschuster.jdl.ui.jdl.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
@@ -365,11 +365,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+					definitionId="com.rainerschuster.jdl.Jdl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -381,7 +381,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="com.rainerschuster.jdl.JdlDsl.Editor.opened">
+						definitionId="com.rainerschuster.jdl.Jdl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -389,28 +389,28 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="com.rainerschuster.jdl.JdlDsl"
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="com.rainerschuster.jdl.JdlDsl.refactoring"
+			category="com.rainerschuster.jdl.Jdl"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="com.rainerschuster.jdl.Jdl.refactoring"
 			name="Refactoring">
-			<keywordReference id="com.rainerschuster.jdl.ui.keyword_JdlDsl"/>
+			<keywordReference id="com.rainerschuster.jdl.ui.keyword_Jdl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="com.rainerschuster.jdl.JdlDsl.compare.contentViewers"
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="com.rainerschuster.jdl.Jdl.compare.contentViewers"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="jdl,jh">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="com.rainerschuster.jdl.JdlDsl.compare.contentMergeViewers"
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="jdl,jh" label="JdlDsl Compare">
+		<viewer id="com.rainerschuster.jdl.Jdl.compare.contentMergeViewers"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="jdl,jh" label="Jdl Compare">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="com.rainerschuster.jdl.JdlDsl.editors.documentProviders"
-			class="com.rainerschuster.jdl.ui.JdlDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+		<provider id="com.rainerschuster.jdl.Jdl.editors.documentProviders"
+			class="com.rainerschuster.jdl.ui.JdlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
 			extensions="jdl,jh">
 		</provider>
 	</extension>

@@ -7,5 +7,5 @@ package com.rainerschuster.jdl
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
-class JdlDslRuntimeModule extends AbstractJdlDslRuntimeModule {
+class JdlRuntimeModule extends AbstractJdlRuntimeModule {
 }

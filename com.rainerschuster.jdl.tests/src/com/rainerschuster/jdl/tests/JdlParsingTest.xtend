@@ -4,7 +4,7 @@
 package com.rainerschuster.jdl.tests
 
 import com.google.inject.Inject
-import com.rainerschuster.jdl.jdlDsl.Model
+import com.rainerschuster.jdl.jdl.Model
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
@@ -13,8 +13,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
-@InjectWith(JdlDslInjectorProvider)
-class JdlDslParsingTest{
+@InjectWith(JdlInjectorProvider)
+class JdlParsingTest{
 
 	@Inject
 	ParseHelper<Model> parseHelper

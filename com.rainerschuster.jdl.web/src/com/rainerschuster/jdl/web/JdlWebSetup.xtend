@@ -7,8 +7,8 @@ import com.google.inject.Guice
 import com.google.inject.Injector
 import com.google.inject.Provider
 import com.google.inject.util.Modules
-import com.rainerschuster.jdl.JdlDslRuntimeModule
-import com.rainerschuster.jdl.JdlDslStandaloneSetup
+import com.rainerschuster.jdl.JdlRuntimeModule
+import com.rainerschuster.jdl.JdlStandaloneSetup
 import java.util.concurrent.ExecutorService
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 
@@ -16,13 +16,13 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
  * Initialization support for running Xtext languages in web applications.
  */
 @FinalFieldsConstructor
-class JdlDslWebSetup extends JdlDslStandaloneSetup {
+class JdlWebSetup extends JdlStandaloneSetup {
 	
 	val Provider<ExecutorService> executorServiceProvider;
 	
 	override Injector createInjector() {
-		val runtimeModule = new JdlDslRuntimeModule()
-		val webModule = new JdlDslWebModule(executorServiceProvider)
+		val runtimeModule = new JdlRuntimeModule()
+		val webModule = new JdlWebModule(executorServiceProvider)
 		return Guice.createInjector(Modules.override(runtimeModule).with(webModule))
 	}
 	

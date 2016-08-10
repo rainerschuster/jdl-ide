@@ -1,8 +1,8 @@
 <idea-plugin version="2" xmlns:xi="http://www.w3.org/2001/XInclude">
 	<id>com.rainerschuster.jdl.idea</id>
-	<name>JdlDsl Support</name>
+	<name>Jdl Support</name>
 	<description>
-		This plugin enables smart editing of JdlDsl files.
+		This plugin enables smart editing of Jdl files.
 	</description>
 	<version>1.0.0</version>
 	<vendor>Rainer Schuster</vendor>

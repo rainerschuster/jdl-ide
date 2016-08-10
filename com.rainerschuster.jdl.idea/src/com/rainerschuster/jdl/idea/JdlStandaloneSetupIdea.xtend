@@ -4,14 +4,14 @@
 package com.rainerschuster.jdl.idea
 
 import com.google.inject.Guice
-import com.rainerschuster.jdl.JdlDslRuntimeModule
-import com.rainerschuster.jdl.JdlDslStandaloneSetupGenerated
+import com.rainerschuster.jdl.JdlRuntimeModule
+import com.rainerschuster.jdl.JdlStandaloneSetupGenerated
 import org.eclipse.xtext.util.Modules2
 
-class JdlDslStandaloneSetupIdea extends JdlDslStandaloneSetupGenerated {
+class JdlStandaloneSetupIdea extends JdlStandaloneSetupGenerated {
 	override createInjector() {
-		val runtimeModule = new JdlDslRuntimeModule()
-		val ideaModule = new JdlDslIdeaModule()
+		val runtimeModule = new JdlRuntimeModule()
+		val ideaModule = new JdlIdeaModule()
 		val mergedModule = Modules2.mixin(runtimeModule, ideaModule)
 		return Guice.createInjector(mergedModule)
 	}

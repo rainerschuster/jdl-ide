@@ -3,12 +3,12 @@
  */
 package com.rainerschuster.jdl.idea.completion
 
-import com.rainerschuster.jdl.idea.lang.JdlDslLanguage
+import com.rainerschuster.jdl.idea.lang.JdlLanguage
 import org.eclipse.xtext.idea.lang.AbstractXtextLanguage
 
-class JdlDslCompletionContributor extends AbstractJdlDslCompletionContributor {
+class JdlCompletionContributor extends AbstractJdlCompletionContributor {
 	new() {
-		this(JdlDslLanguage.INSTANCE)
+		this(JdlLanguage.INSTANCE)
 	}
 	
 	new(AbstractXtextLanguage lang) {
