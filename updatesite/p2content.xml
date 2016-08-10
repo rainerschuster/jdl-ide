@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='2'>
+  <unit id='201608102026.main.source' version='1.0.0.2--cNy_dL7735E3I53737E'>
+    <properties size='2'>
+      <property name='org.eclipse.equinox.p2.name' value='Jdl (Sources)'/>
+      <property name='org.eclipse.equinox.p2.type.category' value='true'/>
+    </properties>
+    <provides size='1'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='201608102026.main.source' version='1.0.0.2--cNy_dL7735E3I53737E'/>
+    </provides>
+    <requires size='1'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='com.rainerschuster.jdl.feature.source.feature.group' range='[1.0.0.201608102026,1.0.0.201608102026]'/>
+    </requires>
+    <touchpoint id='null' version='0.0.0'/>
+  </unit>
+  <unit id='201608102026.main' version='1.0.0.2--cNy_nh7735E3I53737E'>
+    <properties size='2'>
+      <property name='org.eclipse.equinox.p2.name' value='Jdl'/>
+      <property name='org.eclipse.equinox.p2.type.category' value='true'/>
+    </properties>
+    <provides size='1'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='201608102026.main' version='1.0.0.2--cNy_nh7735E3I53737E'/>
+    </provides>
+    <requires size='1'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='com.rainerschuster.jdl.feature.feature.group' range='[1.0.0.201608102026,1.0.0.201608102026]'/>
+    </requires>
+    <touchpoint id='null' version='0.0.0'/>
+  </unit>
+</units>
