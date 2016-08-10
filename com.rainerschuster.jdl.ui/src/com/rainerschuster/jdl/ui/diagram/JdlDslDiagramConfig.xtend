@@ -177,12 +177,12 @@ class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
 			}
 			text += " ";
 			text += " [";
-//			text += switch(multiplicity) {
-//				case ONE_TO_MANY: '1'
-//				case MANY_TO_ONE: '*'
-//				case ONE_TO_ONE: '1'
-//				case MANY_TO_MANY: '*'
-//			}
+			text += switch((it.eContainer as Relationship).multiplicity) {
+				case ONE_TO_MANY: '1'
+				case MANY_TO_ONE: '*'
+				case ONE_TO_ONE: '1'
+				case MANY_TO_MANY: '*'
+			}
 			text += "]";
 			text
 		}
@@ -204,12 +204,12 @@ class JdlDslDiagramConfig extends AbstractXtextDiagramConfig {
 			}
 			text += " ";
 			text += " [";
-//			text += switch(multiplicity) {
-//				case ONE_TO_MANY: '*'
-//				case MANY_TO_ONE: '1'
-//				case ONE_TO_ONE: '1'
-//				case MANY_TO_MANY: '*'
-//			}
+			text += switch((it.eContainer as Relationship).multiplicity) {
+				case ONE_TO_MANY: '*'
+				case MANY_TO_ONE: '1'
+				case ONE_TO_ONE: '1'
+				case MANY_TO_MANY: '*'
+			}
 			text += "]";
 			text
 		}
