@@ -1,3 +1,5 @@
 include 'com.rainerschuster.jdl'
 include 'com.rainerschuster.jdl.ide'
 include 'com.rainerschuster.jdl.idea'
+include 'com.rainerschuster.jdl.web'
+include 'com.rainerschuster.jdl.tests'

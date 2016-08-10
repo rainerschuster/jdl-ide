@@ -17,11 +17,9 @@
 		<module>com.rainerschuster.jdl</module>
 		<module>com.rainerschuster.jdl.ide</module>
 		<module>com.rainerschuster.jdl.ui</module>
-		<module>com.rainerschuster.jdl.web</module>
 		<module>com.rainerschuster.jdl.target</module>
 		<module>com.rainerschuster.jdl.feature</module>
 		<module>com.rainerschuster.jdl.repository</module>
-		<module>com.rainerschuster.jdl.tests</module>
 		<module>com.rainerschuster.jdl.ui.tests</module>
 	</modules>
 	<build>
